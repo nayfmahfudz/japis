@@ -18,8 +18,12 @@ class Pesanan extends StatelessWidget {
               padding: EdgeInsets.all(10),
             ),
             Container(
-                padding: EdgeInsets.only(bottom: 10),
+                height: 100,
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                 child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                   child: InkWell(
                       onTap: () {
                         Navigator.push(
@@ -36,7 +40,7 @@ class Pesanan extends StatelessWidget {
                             width: 50,
                           ),
                           Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 "ID Pesanan: 1qa2s3d4f5g",
@@ -58,7 +62,8 @@ class Pesanan extends StatelessWidget {
                       )),
                 )),
             Container(
-                padding: EdgeInsets.only(bottom: 10),
+                height: 100,
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                 child: Card(
                   child: InkWell(
                       onTap: () {
@@ -76,7 +81,7 @@ class Pesanan extends StatelessWidget {
                             width: 50,
                           ),
                           Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 "ID Pesanan: 34f5g6hj8k",
@@ -98,7 +103,8 @@ class Pesanan extends StatelessWidget {
                       )),
                 )),
             Container(
-                padding: EdgeInsets.only(bottom: 10),
+                height: 100,
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                 child: Card(
                   child: InkWell(
                       onTap: () {
@@ -116,7 +122,7 @@ class Pesanan extends StatelessWidget {
                             width: 50,
                           ),
                           Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 "ID Pesanan: 5g2dj7jfs2",
@@ -138,7 +144,8 @@ class Pesanan extends StatelessWidget {
                       )),
                 )),
             Container(
-                padding: EdgeInsets.only(bottom: 10),
+                height: 100,
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                 child: Card(
                   child: InkWell(
                       onTap: () {
@@ -156,7 +163,7 @@ class Pesanan extends StatelessWidget {
                             width: 50,
                           ),
                           Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 "ID Pesanan: 1af4h6k8d3",
@@ -178,7 +185,8 @@ class Pesanan extends StatelessWidget {
                       )),
                 )),
             Container(
-                padding: EdgeInsets.only(bottom: 10),
+                height: 100,
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                 child: Card(
                   child: InkWell(
                       onTap: () {
@@ -188,7 +196,7 @@ class Pesanan extends StatelessWidget {
                                 builder: (context) => PesananQR()));
                       },
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Image.asset(
                             "gambar/qr.jpeg",
@@ -196,6 +204,7 @@ class Pesanan extends StatelessWidget {
                             width: 50,
                           ),
                           Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 "ID Pesanan: b5c3v4m8v4",
@@ -205,14 +214,23 @@ class Pesanan extends StatelessWidget {
                               Text("Status Pesanan: Selesai"),
                             ],
                           ),
+                          RaisedButton(
+                            onPressed: () {},
+                            textColor: Colors.white,
+                            color: Color(0xFF44D8F3),
+                            child: Container(
+                              child: Text("Bayar"),
+                            ),
+                          )
                         ],
                       )),
                 )),
             Container(
-                padding: EdgeInsets.only(bottom: 10),
+                height: 100,
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                 child: Card(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Image.asset(
                         "gambar/qr.jpeg",
@@ -220,7 +238,7 @@ class Pesanan extends StatelessWidget {
                         width: 50,
                       ),
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             "ID Pesanan: x2v34b57m8z1",
@@ -230,6 +248,14 @@ class Pesanan extends StatelessWidget {
                           Text("Status Pesanan: Selesai"),
                         ],
                       ),
+                      RaisedButton(
+                        onPressed: () {},
+                        textColor: Colors.white,
+                        color: Color(0xFF44D8F3),
+                        child: Container(
+                          child: Text("Bayar"),
+                        ),
+                      )
                     ],
                   ),
                 )),

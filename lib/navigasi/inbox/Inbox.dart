@@ -202,7 +202,9 @@ class MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            Divider(),
+            Divider(
+              thickness: 2,
+            ),
           ]);
         });
   }

@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:japis_new/navigasi/akun/Login.dart';
 import 'package:japis_new/navigasi/akun/Verifikasi.dart';
-
-void main() {
-  runApp(MaterialApp(
-    home: DaftarBaru(),
-  ));
-}
+import 'package:http/http.dart' as http;
 
 class DaftarBaru extends StatefulWidget {
   @override
@@ -15,6 +11,14 @@ class DaftarBaru extends StatefulWidget {
 class _State extends State<DaftarBaru> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  Future signup() async {
+    final url = "http://ptb.namaindah.com/api/signup";
+    final response = await http.post(url,
+        body: {'email': nameController.text, 'no_wa': passwordController.text});
+    print(response.body);
+    return response.body;
+  }
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -23,52 +27,78 @@ class _State extends State<DaftarBaru> {
         backgroundColor: Color(0xFF44D8F3),
         body: Form(
             key: _formKey,
-            child: Padding(
-                padding: EdgeInsets.all(10),
+            child: Container(
+              padding: EdgeInsets.fromLTRB(25, 0, 25, 70),
+              child: Center(
                 child: ListView(
+                  shrinkWrap: true,
                   children: <Widget>[
                     Container(
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(10),
                         child: Image.asset(
                           'gambar/japis-logo.jpg',
-                          height: 150.00,
-                          width: 200.00,
+                          height: 120.00,
+                          width: 160.00,
                         )),
                     Container(
-                      padding: EdgeInsets.all(10),
+                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        child: Text(
+                          "Email",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500),
+                        )),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(10, 6, 10, 0),
                       child: TextFormField(
-                        controller: nameController,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(),
-                          labelText: 'Email',
-                        ),
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Alamat email tidak boleh kosong';
                           }
                           return null;
                         },
+                        // controller: nameController,
+                        decoration: InputDecoration(
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                            borderSide: new BorderSide(),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: 'Email',
+                        ),
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                        padding: EdgeInsets.fromLTRB(10, 15, 10, 0),
+                        child: Text(
+                          "Nomor Handphone",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500),
+                        )),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(10, 6, 10, 0),
                       child: TextFormField(
                         validator: (value) {
                           if (value.isEmpty) {
-                            return 'Nomor WA tidak boleh kosong';
+                            return 'Password tidak boleh kosong';
                           }
                           return null;
                         },
-                        keyboardType: TextInputType.phone,
-                        controller: passwordController,
+                        obscureText: true,
+                        // controller: passwordController,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          border: OutlineInputBorder(),
-                          labelText: 'No. WhatsApp',
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                            borderSide: new BorderSide(),
+                          ),
+                          hintText: 'Password',
                         ),
                       ),
                     ),
@@ -76,37 +106,58 @@ class _State extends State<DaftarBaru> {
                         height: 60,
                         padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
                         child: RaisedButton(
-                          textColor: Colors.white,
-                          color: Colors.blue,
-                          child: Text('Daftar Baru'),
-                          onPressed: () {
-                            if (_formKey.currentState.validate()) {
-                              // If the form is valid, display a Snackbar.
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          VerifikasiPendaftaran()));
-                            }
-                          },
-                        )),
-                    // Container(
-                    //     child: Row(
-                    //   children: <Widget>[
-                    //     FlatButton(
-                    //       textColor: Colors.blue,
-                    //       child: Text(
-                    //         'Daftar Baru',
-                    //         style: TextStyle(fontSize: 15),
-                    //       ),
-                    //       onPressed: () {
-                    //         //signup screen
-                    //       },
-                    //     )
-                    //   ],
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    // ))
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            textColor: Colors.white,
+                            color: Colors.blue,
+                            child: Text('Masuk'),
+                            onPressed: () {
+                              if (_formKey.currentState.validate()) {
+                                // signup().then((value) => value["status"] != null
+                                //     ? value["status"] == true
+                                //         ?
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            VerifikasiPendaftaran()));
+                                //     : null
+                                // : null);
+                              }
+                            })),
+                    Container(
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          children: <Widget>[
+                            Text(
+                              'Sudah punya akun?',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: InkWell(
+                                child: Text(
+                                  'Masuk',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.blue),
+                                ),
+                                onTap: () {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Akun()));
+                                },
+                              ),
+                            )
+                          ],
+                          mainAxisAlignment: MainAxisAlignment.center,
+                        ))
                   ],
-                ))));
+                ),
+              ),
+            )));
   }
 }

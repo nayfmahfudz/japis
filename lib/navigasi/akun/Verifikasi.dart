@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:japis_new/navigasi/akun/BuatPassword.dart';
-
-void main() {
-  runApp(MaterialApp(
-    home: VerifikasiPendaftaran(),
-  ));
-}
+import 'package:http/http.dart' as http;
 
 class VerifikasiPendaftaran extends StatefulWidget {
   @override
@@ -15,6 +10,14 @@ class VerifikasiPendaftaran extends StatefulWidget {
 class _State extends State<VerifikasiPendaftaran> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  Future pass() async {
+    final url = "http://ptb.namaindah.com/api/verif";
+    final response = await http.post(url,
+        body: {'email': nameController.text, "kode_verif_email": ""});
+    print(response.body);
+    return response.body;
+  }
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -23,15 +26,20 @@ class _State extends State<VerifikasiPendaftaran> {
         backgroundColor: Color(0xFF44D8F3),
         body: Form(
             key: _formKey,
-            child: Padding(
-                padding: EdgeInsets.all(10),
+            child: Container(
+              padding: EdgeInsets.fromLTRB(25, 0, 25, 70),
+              child: Center(
                 child: ListView(
+                  shrinkWrap: true,
                   children: <Widget>[
-                    Image.asset(
-                      'gambar/japis-logo.jpg',
-                      height: 150.00,
-                      width: 200.00,
-                    ),
+                    Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(10),
+                        child: Image.asset(
+                          'gambar/japis-logo.jpg',
+                          height: 120.00,
+                          width: 160.00,
+                        )),
                     Container(
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(10),
@@ -42,34 +50,47 @@ class _State extends State<VerifikasiPendaftaran> {
                           ),
                         )),
                     Container(
-                      padding: EdgeInsets.all(10),
+                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        child: Text(
+                          "Masukan Kode Otp",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500),
+                        )),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(10, 6, 10, 0),
                       child: TextFormField(
-                        keyboardType: TextInputType.number,
-                        controller: nameController,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(),
-                          labelText: 'Kode verifikasi',
-                        ),
                         validator: (value) {
                           if (value.isEmpty) {
-                            return 'Kode verifikasi tidak boleh kosong';
+                            return 'Otp tidak boleh kosong';
                           }
                           return null;
                         },
+                        // controller: nameController,
+                        decoration: InputDecoration(
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                            borderSide: new BorderSide(),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: 'Kode Otp',
+                        ),
                       ),
                     ),
                     Container(
                         height: 60,
                         padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
                         child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
                           textColor: Colors.white,
                           color: Colors.blue,
                           child: Text('Verifikasi'),
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
-                              // If the form is valid, display a Snackbar.
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -78,6 +99,68 @@ class _State extends State<VerifikasiPendaftaran> {
                           },
                         )),
                   ],
-                ))));
+                ),
+              ),
+            )));
+    // Scaffold(
+    //     backgroundColor: Color(0xFF44D8F3),
+    //     body: Form(
+    //         key: _formKey,
+    //         child: Padding(
+    //             padding: EdgeInsets.all(10),
+    //             child: ListView(
+    //               children: <Widget>[
+    //                 Image.asset(
+    //                   'gambar/japis-logo.jpg',
+    //                   height: 150.00,
+    //                   width: 200.00,
+    //                 ),
+    //                 Container(
+    //                     alignment: Alignment.center,
+    //                     padding: EdgeInsets.all(10),
+    //                     child: Text(
+    //                       'Silakan periksa kode verifikasi pada email yang digunakan untuk mendaftar',
+    //                       style: TextStyle(
+    //                         fontSize: 15,
+    //                       ),
+    //                     )),
+    //                 Container(
+    //                   padding: EdgeInsets.all(10),
+    //                   child: TextFormField(
+    //                     keyboardType: TextInputType.number,
+    //                     controller: nameController,
+    //                     decoration: InputDecoration(
+    //                       filled: true,
+    //                       fillColor: Colors.white,
+    //                       border: OutlineInputBorder(),
+    //                       labelText: 'Kode verifikasi',
+    //                     ),
+    //                     validator: (value) {
+    //                       if (value.isEmpty) {
+    //                         return 'Kode verifikasi tidak boleh kosong';
+    //                       }
+    //                       return null;
+    //                     },
+    //                   ),
+    //                 ),
+    //                 Container(
+    //                     height: 60,
+    //                     padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
+    //                     child: RaisedButton(
+    //                       textColor: Colors.white,
+    //                       color: Colors.blue,
+    //                       child: Text('Verifikasi'),
+    //                       onPressed: () {
+    //                         if (_formKey.currentState.validate()) {
+    //                           // If the form is valid, display a Snackbar.
+    //                           Navigator.push(
+    //                               context,
+    //                               MaterialPageRoute(
+    //                                   builder: (context) => BuatPassword()));
+    //                         }
+    //                       },
+    //                     )),
+    //               ],
+    //             ))));
   }
 }
