@@ -8,6 +8,7 @@ import 'package:japis_new/sub-halaman/Efacility/FormSewaFasilitas.dart';
 import 'package:japis_new/sub-halaman/Efacility/DetailBasket.dart';
 import 'package:japis_new/sub-halaman/Efacility/DetailFutsal.dart';
 import 'package:japis_new/sub-halaman/Efacility/DetailSerbaguna.dart';
+import 'package:japis_new/sub-halaman/Etraining/DetailMarshalling.dart';
 
 class Efacility extends StatelessWidget {
   @override
@@ -408,89 +409,99 @@ class CardData extends StatelessWidget {
   Widget build(BuildContext context) {
     foto = data["foto_layanan"].toString().split(",");
     // print(data["foto_layanan"].toString().split(","));
-    return Container(
-      // margin: EdgeInsets.all(10),
-      height: MediaQuery.of(context).size.height * 0.18,
-      width: MediaQuery.of(context).size.width,
-      child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Container(
-                  height: MediaQuery.of(context).size.width * 0.2,
-                  width: MediaQuery.of(context).size.width * 0.2,
-                  child: Image.network(
-                    imageurl + foto[0].toString(),
-                    fit: BoxFit.contain,
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DetailEtraining(data, imageurl, foto)));
+      },
+      child: Container(
+        // margin: EdgeInsets.all(10),
+        height: MediaQuery.of(context).size.height * 0.18,
+        width: MediaQuery.of(context).size.width,
+        child: Card(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0)),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Container(
+                    height: MediaQuery.of(context).size.width * 0.2,
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    child: Image.network(
+                      imageurl + foto[0].toString(),
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, top: 20),
-                child: Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(data["nama_layanan"],
-                          style: TextStyle(
-                            fontSize: 25,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500,
-                          )),
-                      Text("Rp. " + data["tarif"] + " -/jam",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontStyle: FontStyle.normal,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF44D8F3),
-                          )),
-                      Container(
-                        width: MediaQuery.of(context).size.width / 2.5,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ButtonTheme(
-                              minWidth: 70,
-                              height: 30,
-                              child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0)),
-                                onPressed: () {},
-                                textColor: Colors.white,
-                                color: Color(0xFF44D8F3),
-                                child: Text("Detail"),
-                              ),
-                            ),
-                            ButtonTheme(
-                              minWidth: 70,
-                              height: 30,
-                              child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0)),
-                                onPressed: () {},
-                                textColor: Colors.white,
-                                color: Color(0xFF44D8F3),
-                                child: Container(
-                                  child: Text("Sewa"),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 20),
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(data["nama_layanan"],
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w500,
+                            )),
+                        Text("Rp. " + data["tarif"] + " -/jam",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFF44D8F3),
+                            )),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 2.5,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ButtonTheme(
+                                minWidth: 70,
+                                height: 30,
+                                child: RaisedButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10.0)),
+                                  onPressed: () {},
+                                  textColor: Colors.white,
+                                  color: Color(0xFF44D8F3),
+                                  child: Text("Detail"),
                                 ),
                               ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
+                              ButtonTheme(
+                                minWidth: 70,
+                                height: 30,
+                                child: RaisedButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10.0)),
+                                  onPressed: () {},
+                                  textColor: Colors.white,
+                                  color: Color(0xFF44D8F3),
+                                  child: Container(
+                                    child: Text("Sewa"),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              )
-            ],
-          )),
+                )
+              ],
+            )),
+      ),
     );
   }
 }

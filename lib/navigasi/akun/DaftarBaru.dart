@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:japis_new/navigasi/akun/Login.dart';
 import 'package:japis_new/navigasi/akun/Verifikasi.dart';
@@ -13,16 +15,43 @@ class _State extends State<DaftarBaru> {
   TextEditingController passwordController = TextEditingController();
   Future signup() async {
     final url = "http://ptb.namaindah.com/api/signup";
+    print(nameController.text);
+    print(passwordController.text);
     final response = await http.post(url,
         body: {'email': nameController.text, 'no_wa': passwordController.text});
     print(response.body);
-    return response.body;
+    final jsondata = jsonDecode(response.body);
+    return jsondata;
   }
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    alarm(BuildContext context, String text) => showDialog(
+        context: context,
+        builder: (context) => Center(
+              child: AlertDialog(
+                content: Text(
+                  text ?? "Permintaan anda belum tersedia",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.orange, fontWeight: FontWeight.bold),
+                ),
+                elevation: 3,
+                actionsPadding: EdgeInsets.only(right: 28),
+                actions: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      // okButton,
+                      SizedBox(
+                        width: 22,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ));
     return Scaffold(
         backgroundColor: Color(0xFF44D8F3),
         body: Form(
@@ -59,7 +88,7 @@ class _State extends State<DaftarBaru> {
                           }
                           return null;
                         },
-                        // controller: nameController,
+                        controller: nameController,
                         decoration: InputDecoration(
                           border: new OutlineInputBorder(
                             borderRadius: new BorderRadius.circular(10.0),
@@ -89,8 +118,7 @@ class _State extends State<DaftarBaru> {
                           }
                           return null;
                         },
-                        obscureText: true,
-                        // controller: passwordController,
+                        controller: passwordController,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
@@ -106,26 +134,31 @@ class _State extends State<DaftarBaru> {
                         height: 60,
                         padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
                         child: RaisedButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            textColor: Colors.white,
-                            color: Colors.blue,
-                            child: Text('Masuk'),
-                            onPressed: () {
-                              if (_formKey.currentState.validate()) {
-                                // signup().then((value) => value["status"] != null
-                                //     ? value["status"] == true
-                                //         ?
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            VerifikasiPendaftaran()));
-                                //     : null
-                                // : null);
-                              }
-                            })),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          textColor: Colors.white,
+                          color: Colors.blue,
+                          child: Text('Masuk'),
+                          onPressed: () {
+                            if (_formKey.currentState.validate()) {
+                              signup().then((value) {
+                                // if (value["status"] != null) {
+                                if (value["status"] == true) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              VerifikasiPendaftaran(
+                                                  nameController.text)));
+                                } else {
+                                  alarm(context, value["message"].toString());
+                                }
+                                // }
+                              });
+                            }
+                          },
+                        )),
                     Container(
                         padding: EdgeInsets.all(10),
                         child: Row(

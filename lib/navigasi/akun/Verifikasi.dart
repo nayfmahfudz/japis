@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:japis_new/navigasi/akun/BuatPassword.dart';
 import 'package:http/http.dart' as http;
 
 class VerifikasiPendaftaran extends StatefulWidget {
+  VerifikasiPendaftaran(this.email);
+  String email;
   @override
   _State createState() => _State();
 }
@@ -11,17 +15,44 @@ class _State extends State<VerifikasiPendaftaran> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   Future pass() async {
+    print(nameController.text);
+    print(widget.email);
     final url = "http://ptb.namaindah.com/api/verif";
     final response = await http.post(url,
-        body: {'email': nameController.text, "kode_verif_email": ""});
+        body: {'email': widget.email, "kode_verif_email": nameController.text});
     print(response.body);
-    return response.body;
+    final jsondata = jsonDecode(response.body);
+    return jsondata;
   }
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    alarm(BuildContext context, String text) => showDialog(
+        context: context,
+        builder: (context) => Center(
+              child: AlertDialog(
+                content: Text(
+                  text ?? "Permintaan anda belum tersedia",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.orange, fontWeight: FontWeight.bold),
+                ),
+                elevation: 3,
+                actionsPadding: EdgeInsets.only(right: 28),
+                actions: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      // okButton,
+                      SizedBox(
+                        width: 22,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ));
     return Scaffold(
         backgroundColor: Color(0xFF44D8F3),
         body: Form(
@@ -44,7 +75,7 @@ class _State extends State<VerifikasiPendaftaran> {
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          'Silakan periksa kode verifikasi pada email yang digunakan untuk mendaftar',
+                          'Silakan periksa kode verifikasi pada email atau terdapat didalam inbox spam',
                           style: TextStyle(
                             fontSize: 15,
                           ),
@@ -67,7 +98,7 @@ class _State extends State<VerifikasiPendaftaran> {
                           }
                           return null;
                         },
-                        // controller: nameController,
+                        controller: nameController,
                         decoration: InputDecoration(
                           border: new OutlineInputBorder(
                             borderRadius: new BorderRadius.circular(10.0),
@@ -91,10 +122,22 @@ class _State extends State<VerifikasiPendaftaran> {
                           child: Text('Verifikasi'),
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => BuatPassword()));
+                              pass().then((value) {
+                                // if (value["status"] != null) {
+                                if (value["status"] == true) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => BuatPassword(
+                                              value["data"]["id_member"]
+                                                  .toString(),
+                                              value["data"]["token"]
+                                                  .toString())));
+                                } else {
+                                  alarm(context, value["message"].toString());
+                                }
+                                // }
+                              });
                             }
                           },
                         )),

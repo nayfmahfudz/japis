@@ -1,31 +1,90 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:japis_new/main.dart';
 import 'package:japis_new/navigasi/akun/Login.dart';
 import 'package:http/http.dart' as http;
 
 class BuatPassword extends StatefulWidget {
+  BuatPassword(this.id, this.token);
+  String id;
+  String token;
   @override
   _State createState() => _State();
 }
 
 class _State extends State<BuatPassword> {
+//   berhasil(BuildContext context) {
+//   return showDialog(
+//       context: context,
+//       builder: (context) => AlertDialog(
+//             // title: Text('Pendaftaran Berhasil',
+//             //     style: TextStyle(color: Colors.orange)),
+//             content: Text(
+//               Provider.of<Restapi>(context).getmsg(),
+// //              textAlign: TextAlign.center,
+//               style: TextStyle(color: Colors.orange),
+//             ),
+//             elevation: 3,
+// //                actionsPadding: EdgeInsets.only(right: 28),
+//             actions: <Widget>[okButtontoLogin],
+// //            actions: <Widget>[
+// //              RaisedButton(
+// //                  child: Text(
+// //                    'OK',
+// //                    style: TextStyle(color: Colors.orange),
+// //                  ),
+// //                  onPressed: (){
+// //                    Navigator.pushNamed(context, "/Login");
+// //                  }
+// //              )
+// //            ],
+//           ));
+// }
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   Future pass() async {
     final url = "http://ptb.namaindah.com/api/setpass";
+    print(nameController.text);
+    print(passwordController.text);
     final response = await http.post(url, body: {
-      'id': nameController.text,
-      'token': passwordController.text,
-      "password": ""
+      'id': widget.id,
+      'token': widget.id,
+      "password": passwordController.text,
     });
     print(response.body);
-    return response.body;
+    final jsondata = jsonDecode(response.body);
+    return jsondata;
   }
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    alarm(BuildContext context, String text) => showDialog(
+        context: context,
+        builder: (context) => Center(
+              child: AlertDialog(
+                content: Text(
+                  text ?? "Permintaan anda belum tersedia",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.orange, fontWeight: FontWeight.bold),
+                ),
+                elevation: 3,
+                actionsPadding: EdgeInsets.only(right: 28),
+                actions: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      // okButton,
+                      SizedBox(
+                        width: 22,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ));
     return Scaffold(
         backgroundColor: Color(0xFF44D8F3),
         body: Form(
@@ -93,7 +152,7 @@ class _State extends State<BuatPassword> {
                           return null;
                         },
                         obscureText: true,
-                        // controller: passwordController,
+                        controller: passwordController,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
@@ -117,10 +176,18 @@ class _State extends State<BuatPassword> {
                           child: Text('Simpan'),
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Akun()));
+                              pass().then((value) {
+                                // if (value["status"] != null) {
+                                if (value["status"] == true) {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Akun()));
+                                } else {
+                                  alarm(context, value["message"].toString());
+                                }
+                                // }
+                              });
                             }
                           },
                         )),
