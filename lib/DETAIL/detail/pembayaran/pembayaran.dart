@@ -3,10 +3,12 @@ import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:japis_new/DETAIL/detail/pembayaran/berks.dart';
 import 'package:japis_new/model/usermodel.dart';
 
 class Bayar extends StatefulWidget {
-  Bayar(this.data, this.imageurl);
+  Bayar(this.data, this.imageurl, this.judul);
+  String judul;
   Map data;
   String imageurl;
 
@@ -84,21 +86,26 @@ class _BayarState extends State<Bayar> {
               ),
               textColor: Colors.white,
               color: Color(0xFF44D8F3),
-              child: Text('Bayar'),
+              child: Text('Lengapi Berkas'),
               onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            Berkas(widget.judul, widget.data)));
                 // if (_formKey.currentState.validate()) {
-                post(widget.data["id_layanan"], widget.data["tarif"])
-                    .then((value) {
-                  // Map value;
-                  // print(value["status"]);
-                  if (value["status"] == true) {
-                    Navigator.pop(context);
-                    Navigator.pop(context);
-                    alarm(context, value["message"].toString());
-                  } else {
-                    alarm(context, value["message"].toString());
-                  }
-                });
+                // post(widget.data["id_layanan"], widget.data["tarif"])
+                //     .then((value) {
+                //   // Map value;
+                //   // print(value["status"]);
+                //   if (value["status"] == true) {
+                //     Navigator.pop(context);
+                //     Navigator.pop(context);
+                //     alarm(context, value["message"].toString());
+                //   } else {
+                //     alarm(context, value["message"].toString());
+                //   }
+                // });
                 // }
               },
             )),

@@ -3,11 +3,12 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:japis_new/DETAIL/detail/pembayaran/pembayaran.dart';
 
 class DetailEtraining extends StatefulWidget {
-  DetailEtraining(this.data, this.imageurl, this.foto);
+  DetailEtraining(this.data, this.imageurl, this.foto, this.judul);
   TabController controller;
   List foto;
   Map data;
   String imageurl;
+  String judul;
   @override
   _DetailEtrainingState createState() => _DetailEtrainingState();
 }
@@ -61,8 +62,8 @@ class _DetailEtrainingState extends State<DetailEtraining>
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Bayar(
-                            widget.data, widget.imageurl + widget.foto[0])));
+                        builder: (context) => Bayar(widget.data,
+                            widget.imageurl + widget.foto[0], widget.judul)));
               },
               child: Container(
                   height: 50,

@@ -414,7 +414,8 @@ class CardData extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => DetailEtraining(data, imageurl, foto)));
+                builder: (context) =>
+                    DetailEtraining(data, imageurl, foto, "facility")));
       },
       child: Container(
         // margin: EdgeInsets.all(10),

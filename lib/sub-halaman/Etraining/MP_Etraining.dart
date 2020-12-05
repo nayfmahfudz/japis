@@ -450,7 +450,8 @@ class CardData extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => DetailEtraining(data, imageurl, foto)));
+                  builder: (context) =>
+                      DetailEtraining(data, imageurl, foto, "training")));
         },
         child: Container(
           // margin: EdgeInsets.all(10),
@@ -518,7 +519,10 @@ class CardData extends StatelessWidget {
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   DetailEtraining(
-                                                      data, imageurl, foto)));
+                                                      data,
+                                                      imageurl,
+                                                      foto,
+                                                      "training")));
                                     },
                                     textColor: Colors.white,
                                     color: Color(0xFF44D8F3),
@@ -538,7 +542,10 @@ class CardData extends StatelessWidget {
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   DetailEtraining(
-                                                      data, imageurl, foto)));
+                                                      data,
+                                                      imageurl,
+                                                      foto,
+                                                      "training")));
                                     },
                                     textColor: Colors.white,
                                     color: Color(0xFF44D8F3),
