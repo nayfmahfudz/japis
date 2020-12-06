@@ -202,17 +202,17 @@ class _BayarState extends State<Bayar> {
                                   SizedBox(
                                     height: 10,
                                   ),
-                                  Text(
-                                    "Tanggal :" + formattedDate.toString(),
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontStyle: FontStyle.normal,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.black),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
+                                  // Text(
+                                  //   "Tanggal :" + formattedDate.toString(),
+                                  //   style: TextStyle(
+                                  //       fontSize: 15,
+                                  //       fontStyle: FontStyle.normal,
+                                  //       fontWeight: FontWeight.w500,
+                                  //       color: Colors.black),
+                                  // ),
+                                  // SizedBox(
+                                  //   height: 10,
+                                  // ),
                                   Text(
                                     "Harga : RP. " +
                                         widget.data["tarif"].toString(),

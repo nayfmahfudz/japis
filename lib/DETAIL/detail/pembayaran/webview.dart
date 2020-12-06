@@ -6,6 +6,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 class WebViewBayar extends StatefulWidget {
   WebViewBayar(this.data, this.databank);
   Map data, databank;
+  String tanggal;
   @override
   _WebViewBayarState createState() => _WebViewBayarState();
 }
@@ -26,6 +27,7 @@ class _WebViewBayarState extends State<WebViewBayar> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.data);
     return Scaffold(
         appBar: AppBar(
           title: Text("Pembayaran"),
@@ -71,9 +73,23 @@ class _WebViewBayarState extends State<WebViewBayar> {
             ],
           ),
         ),
-        body: Builder(
-            builder: (contex) => WebView(
-                  initialUrl: 'http://ptb.namaindah.com/qrcode/vyt5KEqlR9',
-                )));
+        body: Column(
+          children: [
+            Builder(
+                builder: (contex) => WebView(
+                      initialUrl:
+                          'http://ptb.namaindah.com/qrcode/${widget.data["no_invoice"]}',
+                    )),
+            Container(
+              height: 100,
+              width: MediaQuery.of(context).size.width,
+              child: Card(
+                child: Column(
+                  children: [Text(widget.databank["waktu"])],
+                ),
+              ),
+            )
+          ],
+        ));
   }
 }

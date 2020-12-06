@@ -16,8 +16,19 @@ class DetailEtraining extends StatefulWidget {
 class _DetailEtrainingState extends State<DetailEtraining>
     with SingleTickerProviderStateMixin {
   int index = 0;
+  String tombol;
   @override
   Widget build(BuildContext context) {
+    if (widget.judul == "training") {
+      tombol = "Daftar";
+    } else if (widget.judul == "healthcare") {
+      tombol = "Daftar";
+    } else if (widget.judul == "commerce") {
+      tombol = "Beli";
+    } else {
+      tombol = "Sewa";
+    }
+
     List listwidget = [
       Container(
           child: Column(
@@ -38,6 +49,7 @@ class _DetailEtrainingState extends State<DetailEtraining>
         ],
       ))
     ];
+
     return Scaffold(
       bottomNavigationBar: Container(
         height: 50,
@@ -71,7 +83,7 @@ class _DetailEtrainingState extends State<DetailEtraining>
                   color: Colors.red,
                   child: Center(
                       child: Text(
-                    "Daftar",
+                    tombol,
                     style: TextStyle(
                         fontSize: 20,
                         fontStyle: FontStyle.normal,

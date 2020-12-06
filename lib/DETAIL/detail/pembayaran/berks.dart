@@ -35,7 +35,7 @@ class _BerkasState extends State<Berkas> {
 
   File dummy;
 
-  File bukti;
+  File bukti, uangmuka;
   File ijazah;
   File keterangan;
   final picker = ImagePicker();
@@ -118,6 +118,8 @@ class _BerkasState extends State<Berkas> {
                                     ijazah = value;
                                   } else if (parameter == "keterangan") {
                                     keterangan = value;
+                                  } else if (parameter == "uangmuka") {
+                                    uangmuka = value;
                                   } else {
                                     bukti = value;
                                   }
@@ -354,7 +356,63 @@ class _BerkasState extends State<Berkas> {
                                       ),
                                     ),
                             ]),
-                  widget.judul == "training"
+                  widget.judul != "healthcare"
+                      ? Container()
+                      : Column(children: [
+                          Text(
+                            "Bukti Bayar Uang Muka",
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          keterangan != null
+                              ? InkWell(
+                                  onTap: () {
+                                    topup(context, "uangmuka");
+                                  },
+                                  child: Image.file(uangmuka))
+                              : InkWell(
+                                  onTap: () {
+                                    topup(context, "uangmuka");
+                                  },
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                    child: Container(
+                                      height: 200,
+                                      width: MediaQuery.of(context).size.width,
+                                      child: Card(
+                                        color: Colors.grey.withOpacity(0.4),
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            Icon(
+                                              Icons.image_search_outlined,
+                                              size: 100,
+                                            ),
+                                            Text(
+                                              "Upload Berkas",
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontStyle: FontStyle.normal,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.black),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                        ]),
+                  widget.judul == "training" || widget.judul == "healthcare"
                       ? Container()
                       : Column(
                           children: [

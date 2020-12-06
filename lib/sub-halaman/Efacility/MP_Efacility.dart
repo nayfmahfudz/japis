@@ -185,24 +185,20 @@ class Efacility extends StatelessWidget {
                     future: semua(),
                     builder: (context, snapshot) {
                       List listdata = snapshot.data["data"];
-                      return Expanded(
-                        flex: 1,
-                        child: Container(
-                          // height: MediaQuery.of(context).size.height * 2,
-                          width: MediaQuery.of(context).size.width,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: ScrollPhysics(),
-                            itemCount:
-                                listdata.length == 0 ? 1 : listdata.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 15, right: 15),
-                                child: CardData(listdata[index], imageurl),
-                              );
-                            },
-                          ),
+                      return Container(
+                        // height: MediaQuery.of(context).size.height * 2,
+                        width: MediaQuery.of(context).size.width,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: ScrollPhysics(),
+                          itemCount: listdata.length == 0 ? 1 : listdata.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 15, right: 15),
+                              child: CardData(listdata[index], imageurl),
+                            );
+                          },
                         ),
                       );
                     }),
@@ -280,19 +276,6 @@ class CardData extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              ButtonTheme(
-                                minWidth: 70,
-                                height: 30,
-                                child: RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10.0)),
-                                  onPressed: () {},
-                                  textColor: Colors.white,
-                                  color: Color(0xFF44D8F3),
-                                  child: Text("Detail"),
-                                ),
-                              ),
                               ButtonTheme(
                                 minWidth: 70,
                                 height: 30,

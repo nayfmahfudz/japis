@@ -424,7 +424,7 @@ class CardData extends StatelessWidget {
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.w500,
                             )),
-                        Text("Rp. " + data["tarif"] + " -/jam",
+                        Text("Rp. " + data["tarif"] + " -/Orang",
                             style: TextStyle(
                               fontSize: 15,
                               fontStyle: FontStyle.normal,
@@ -447,21 +447,8 @@ class CardData extends StatelessWidget {
                                   onPressed: () {},
                                   textColor: Colors.white,
                                   color: Color(0xFF44D8F3),
-                                  child: Text("Detail"),
-                                ),
-                              ),
-                              ButtonTheme(
-                                minWidth: 70,
-                                height: 30,
-                                child: RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10.0)),
-                                  onPressed: () {},
-                                  textColor: Colors.white,
-                                  color: Color(0xFF44D8F3),
                                   child: Container(
-                                    child: Text("Sewa"),
+                                    child: Text("Daftar"),
                                   ),
                                 ),
                               )

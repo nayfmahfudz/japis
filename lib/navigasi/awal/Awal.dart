@@ -57,7 +57,7 @@ class HalamanAwal extends StatelessWidget {
                         Column(children: [
                           InkWell(
                             onTap: () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => Akun()));
@@ -75,7 +75,7 @@ class HalamanAwal extends StatelessWidget {
                           InkWell(
                             splashColor: Colors.blue.withAlpha(30),
                             onTap: () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => Akun()));
@@ -118,7 +118,7 @@ class HalamanAwal extends StatelessWidget {
                           InkWell(
                             splashColor: Colors.blue.withAlpha(30),
                             onTap: () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => Akun()));
@@ -135,7 +135,7 @@ class HalamanAwal extends StatelessWidget {
                           InkWell(
                             splashColor: Colors.blue.withAlpha(30),
                             onTap: () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => Akun()));
@@ -152,7 +152,7 @@ class HalamanAwal extends StatelessWidget {
                           InkWell(
                             splashColor: Colors.blue.withAlpha(30),
                             onTap: () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => Akun()));

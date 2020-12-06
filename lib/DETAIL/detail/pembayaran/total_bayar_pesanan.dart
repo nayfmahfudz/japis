@@ -11,9 +11,24 @@ class TotalBayar extends StatefulWidget {
 
 class _TotalBayarState extends State<TotalBayar> {
   List listbank = [
-    {"nama": "Bank BNI", "cabang": "JayaPura", "rekening": "98989686787"},
-    {"nama": "Bank BRI", "cabang": "JayaPura", "rekening": "868546456"},
-    {"nama": "Bank Mandiri", "cabang": "JayaPura", "rekening": "22759907"}
+    {
+      "nama": "Teller Bank",
+      "cabang": "JayaPura",
+      "rekening": "98989686787",
+      "waktu": "90 menit"
+    },
+    {
+      "nama": "Mobile Banking",
+      "cabang": "JayaPura",
+      "rekening": "868546456",
+      "waktu": "45 menit"
+    },
+    {
+      "nama": "Transfer ATM Bank",
+      "cabang": "JayaPura",
+      "rekening": "22759907",
+      "waktu": "90 menit"
+    }
   ];
   int index = 0;
   int indexbutton = 1;
@@ -53,8 +68,8 @@ class _TotalBayarState extends State<TotalBayar> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            WebViewBayar(widget.data, listbank[index])));
+                        builder: (context) => WebViewBayar(
+                            widget.data, listbank[indexbutton - 1])));
               },
               child: Container(
                   height: 50,
@@ -118,7 +133,7 @@ class _TotalBayarState extends State<TotalBayar> {
                     ),
                     Padding(
                       padding: EdgeInsets.fromLTRB(25, 5, 25, 3),
-                      child: Text(listbank[index]["nama"],
+                      child: Text("BNI",
                           style: TextStyle(
                             fontSize: 20,
                             fontStyle: FontStyle.normal,
@@ -127,7 +142,7 @@ class _TotalBayarState extends State<TotalBayar> {
                     ),
                     Padding(
                       padding: EdgeInsets.fromLTRB(25, 3, 25, 5),
-                      child: Text(listbank[index]["cabang"],
+                      child: Text("Jayapura",
                           style: TextStyle(
                             fontSize: 20,
                             fontStyle: FontStyle.normal,
@@ -206,8 +221,8 @@ class _TotalBayarState extends State<TotalBayar> {
                         itemBuilder: (BuildContext context, int i) {
                           return InkWell(
                             onTap: () {
-                              print(widget.data);
-                              index = i;
+                              // print(widget.data);
+                              // index = i;
                               setSelectedRadio(i + 1);
                             },
                             child: Row(
@@ -219,9 +234,9 @@ class _TotalBayarState extends State<TotalBayar> {
                                   groupValue: indexbutton,
                                   onChanged: (value) {
                                     setState(() {
-                                      index = i;
+                                      // index = i;
                                       setSelectedRadio(value);
-                                      print(value);
+                                      // print(value);
                                     });
                                   },
                                 ),
