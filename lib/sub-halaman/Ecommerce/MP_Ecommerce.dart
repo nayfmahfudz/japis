@@ -53,6 +53,7 @@ class ECommerce extends StatelessWidget {
         elevation: 0,
       ),
       body: SingleChildScrollView(
+        physics: ScrollPhysics(),
         child: Container(
           child: Column(
             // shrinkWrap: true,
@@ -240,9 +241,11 @@ class ECommerce extends StatelessWidget {
                       } else {
                         List listdata = snapshot.data["data"];
                         return Container(
-                          height: MediaQuery.of(context).size.height,
+                          // height: MediaQuery.of(context).size.height,
                           width: MediaQuery.of(context).size.width,
                           child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: ScrollPhysics(),
                             itemCount:
                                 listdata.length == 0 ? 1 : listdata.length,
                             itemBuilder: (BuildContext context, int index) {

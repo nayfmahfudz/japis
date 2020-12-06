@@ -28,6 +28,8 @@ dependencies:
   intl: ^0.16.1
   image_picker: ^0.6.7+14
   shared_preferences: ^0.5.12+4
+  # clipboard_manager: ^0.0.4
+  webview_flutter: ^1.0.7
   flutter:
     sdk: flutter
 

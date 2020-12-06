@@ -58,9 +58,11 @@ class Efacility extends StatelessWidget {
         elevation: 0,
       ),
       body: SingleChildScrollView(
+        physics: ScrollPhysics(),
         child: Container(
-          child: Column(
-            // shrinkWrap: true,
+          child: ListView(
+            physics: ScrollPhysics(),
+            shrinkWrap: true,
             children: [
               InkWell(
                 onTap: () {
@@ -183,215 +185,28 @@ class Efacility extends StatelessWidget {
                     future: semua(),
                     builder: (context, snapshot) {
                       List listdata = snapshot.data["data"];
-                      return Container(
-                        height: MediaQuery.of(context).size.height,
-                        width: MediaQuery.of(context).size.width,
-                        child: ListView.builder(
-                          itemCount: listdata.length == 0 ? 1 : listdata.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 15, right: 15),
-                              child: CardData(listdata[index], imageurl),
-                            );
-                          },
+                      return Expanded(
+                        flex: 1,
+                        child: Container(
+                          // height: MediaQuery.of(context).size.height * 2,
+                          width: MediaQuery.of(context).size.width,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: ScrollPhysics(),
+                            itemCount:
+                                listdata.length == 0 ? 1 : listdata.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 15),
+                                child: CardData(listdata[index], imageurl),
+                              );
+                            },
+                          ),
                         ),
                       );
                     }),
               )
-              // Container(
-              //   padding: EdgeInsets.only(left: 15, right: 15),
-              //   child: Column(
-              //     children: [
-              //       Card(
-              //         child: Column(
-              //           mainAxisSize: MainAxisSize.min,
-              //           children: <Widget>[
-              //             const ListTile(
-              //               leading: Icon(Icons.sports_soccer),
-              //               title: Text('Lapangan Futsal'),
-              //               subtitle: Text('Sewa: per jam'),
-              //             ),
-              //             Row(
-              //               mainAxisAlignment: MainAxisAlignment.end,
-              //               children: <Widget>[
-              //                 TextButton(
-              //                   child: const Text('Detail'),
-              //                   onPressed: () {
-              //                     Navigator.push(
-              //                         context,
-              //                         MaterialPageRoute(
-              //                             builder: (context) => DetailFutsal()));
-              //                   },
-              //                 ),
-              //                 const SizedBox(width: 8),
-              //                 TextButton(
-              //                   child: const Text('Sewa'),
-              //                   onPressed: () {
-              //                     Navigator.push(
-              //                         context,
-              //                         MaterialPageRoute(
-              //                             builder: (context) => FormSewa()));
-              //                   },
-              //                 ),
-              //                 const SizedBox(width: 8),
-              //               ],
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //       Card(
-              //         child: Column(
-              //           mainAxisSize: MainAxisSize.min,
-              //           children: <Widget>[
-              //             const ListTile(
-              //               leading: Icon(Icons.sports_basketball),
-              //               title: Text('Lapangan Basket'),
-              //               subtitle: Text('Sewa: per jam'),
-              //             ),
-              //             Row(
-              //               mainAxisAlignment: MainAxisAlignment.end,
-              //               children: <Widget>[
-              //                 TextButton(
-              //                   child: const Text('Detail'),
-              //                   onPressed: () {
-              //                     Navigator.push(
-              //                         context,
-              //                         MaterialPageRoute(
-              //                             builder: (context) => DetailBasket()));
-              //                   },
-              //                 ),
-              //                 const SizedBox(width: 8),
-              //                 TextButton(
-              //                   child: const Text('Sewa'),
-              //                   onPressed: () {
-              //                     Navigator.push(
-              //                         context,
-              //                         MaterialPageRoute(
-              //                             builder: (context) => FormSewa()));
-              //                   },
-              //                 ),
-              //                 const SizedBox(width: 8),
-              //               ],
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //       Card(
-              //         child: Column(
-              //           mainAxisSize: MainAxisSize.min,
-              //           children: <Widget>[
-              //             const ListTile(
-              //               leading: Icon(Icons.business),
-              //               title: Text('Gedung Serbaguna'),
-              //               subtitle: Text('Sewa: per 4 jam'),
-              //             ),
-              //             Row(
-              //               mainAxisAlignment: MainAxisAlignment.end,
-              //               children: <Widget>[
-              //                 TextButton(
-              //                   child: const Text('Detail'),
-              //                   onPressed: () {
-              //                     Navigator.push(
-              //                         context,
-              //                         MaterialPageRoute(
-              //                             builder: (context) =>
-              //                                 DetailSerbaguna()));
-              //                   },
-              //                 ),
-              //                 const SizedBox(width: 8),
-              //                 TextButton(
-              //                   child: const Text('Sewa'),
-              //                   onPressed: () {
-              //                     Navigator.push(
-              //                         context,
-              //                         MaterialPageRoute(
-              //                             builder: (context) => FormSewa()));
-              //                   },
-              //                 ),
-              //                 const SizedBox(width: 8),
-              //               ],
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //       Card(
-              //         child: Column(
-              //           mainAxisSize: MainAxisSize.min,
-              //           children: <Widget>[
-              //             const ListTile(
-              //               leading: Icon(Icons.business),
-              //               title: Text('Asrama Elelim'),
-              //               subtitle: Text('Sewa: orang per kamar per hari'),
-              //             ),
-              //             Row(
-              //               mainAxisAlignment: MainAxisAlignment.end,
-              //               children: <Widget>[
-              //                 TextButton(
-              //                   child: const Text('Detail'),
-              //                   onPressed: () {
-              //                     Navigator.push(
-              //                         context,
-              //                         MaterialPageRoute(
-              //                             builder: (context) => DetailElelim()));
-              //                   },
-              //                 ),
-              //                 const SizedBox(width: 8),
-              //                 TextButton(
-              //                   child: const Text('Sewa'),
-              //                   onPressed: () {
-              //                     Navigator.push(
-              //                         context,
-              //                         MaterialPageRoute(
-              //                             builder: (context) => FormSewa()));
-              //                   },
-              //                 ),
-              //                 const SizedBox(width: 8),
-              //               ],
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //       Card(
-              //         child: Column(
-              //           mainAxisSize: MainAxisSize.min,
-              //           children: <Widget>[
-              //             const ListTile(
-              //               leading: Icon(Icons.business),
-              //               title: Text('Asrama Bravo'),
-              //               subtitle: Text('Sewa: orang per kamar per hari'),
-              //             ),
-              //             Row(
-              //               mainAxisAlignment: MainAxisAlignment.end,
-              //               children: <Widget>[
-              //                 TextButton(
-              //                   child: const Text('Detail'),
-              //                   onPressed: () {
-              //                     Navigator.push(
-              //                         context,
-              //                         MaterialPageRoute(
-              //                             builder: (context) => DetailBravo()));
-              //                   },
-              //                 ),
-              //                 const SizedBox(width: 8),
-              //                 TextButton(
-              //                   child: const Text('Sewa'),
-              //                   onPressed: () {
-              //                     Navigator.push(
-              //                         context,
-              //                         MaterialPageRoute(
-              //                             builder: (context) => FormSewa()));
-              //                   },
-              //                 ),
-              //                 const SizedBox(width: 8),
-              //               ],
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
             ],
           ),
         ),

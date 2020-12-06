@@ -55,9 +55,11 @@ class Etraining extends StatelessWidget {
         elevation: 0,
       ),
       body: SingleChildScrollView(
+        physics: ScrollPhysics(),
         child: Container(
-          child: Column(
-            // shrinkWrap: true,
+          child: ListView(
+            physics: ScrollPhysics(),
+            shrinkWrap: true,
             children: [
               InkWell(
                 onTap: () {
@@ -133,7 +135,7 @@ class Etraining extends StatelessWidget {
                                 Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      "Bisnis",
+                                      "BandarUdara",
                                       style: TextStyle(
                                         fontSize: 12,
                                         fontStyle: FontStyle.normal,
@@ -216,9 +218,10 @@ class Etraining extends StatelessWidget {
                       } else {
                         List listdata = snapshot.data["data"];
                         return Container(
-                          height: MediaQuery.of(context).size.height,
                           width: MediaQuery.of(context).size.width,
                           child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: ScrollPhysics(),
                             itemCount:
                                 listdata.length == 0 ? 1 : listdata.length,
                             itemBuilder: (BuildContext context, int index) {

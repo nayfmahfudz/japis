@@ -12,17 +12,17 @@ void main() => runApp(MyApp());
 
 /// This is the main application widget.
 class MyApp extends StatelessWidget {
-  static const String _title = 'Flutter Code Sample';
-  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  getPref() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
+  // static const String _title = 'Flutter Code Sample';
+  // Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  // getPref() async {
+  //   SharedPreferences preferences = await SharedPreferences.getInstance();
 
-    String value = preferences.getString("value");
-    Map data = json.decode(value);
-    user = User.fromJson(data);
-    print(user);
-    return user;
-  }
+  //   String value = preferences.getString("value");
+  //   Map data = json.decode(value);
+  //   user = User.fromJson(data);
+  //   print(user);
+  //   return user;
+  // }
   // Future datamember(idmember, token) async {
   //   final SharedPreferences prefs = await _prefs;
   //   final url = "http://ptb.namaindah.com/api/member/id/$idmember?token=$token";
@@ -43,19 +43,19 @@ class MyApp extends StatelessWidget {
               backgroundColor: Colors.white.withOpacity(0.5)),
         ),
         // title: _title,
-        home:
-            //  FutureBuilder(
-            //   future: getPref(),
-            //   builder: (context, snapshot) {
-            //     if (snapshot.data == null) {
-            //       return Akun();
-            //     } else {
-            //       if (snapshot.data.id_member != null &&
-            //           snapshot.data.token != null) {
-            //         return MyStatefulWidget();
-            //       } else {
-            //         return
-            Akun()
+        home: MyStatefulWidget()
+        //  FutureBuilder(
+        //   future: getPref(),
+        //   builder: (context, snapshot) {
+        //     if (snapshot.data == null) {
+        //       return Akun();
+        //     } else {
+        //       if (snapshot.data.id_member != null &&
+        //           snapshot.data.token != null) {
+        //         return MyStatefulWidget();
+        //       } else {
+        //         return
+        // Akun()
         //       }
         //     }
         //   },
