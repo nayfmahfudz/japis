@@ -64,7 +64,7 @@ class Pesanan extends StatelessWidget {
                       itemCount: listdata.length,
                       shrinkWrap: true,
                       itemBuilder: (context, index) => Container(
-                          height: 100,
+                          // height: 100,
                           margin: EdgeInsets.fromLTRB(2, 2, 2, 2),
                           padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                           child: Card(
@@ -85,42 +85,70 @@ class Pesanan extends StatelessWidget {
                                   children: [
                                     Expanded(
                                       flex: 2,
-                                      child: Image.asset(
-                                        "gambar/qr.jpeg",
-                                        height: 50,
-                                        width: 50,
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                        child: Image.asset(
+                                          "gambar/qr.jpeg",
+                                          height: 50,
+                                          width: 50,
+                                        ),
                                       ),
                                     ),
                                     Expanded(
                                       flex: 6,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "ID Pesanan: " +
-                                                listdata[index]["no_invoice"],
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          Text("Tanggal Pesanan: " +
-                                              listdata[index]["booking_date"]),
-                                          Text("Status Pesanan: " +
-                                              listdata[index]["status_bayar"]),
-                                        ],
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "ID Pesanan: " +
+                                                  listdata[index]["no_invoice"],
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontStyle: FontStyle.normal,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Text(
+                                                "Tanggal Pesanan: " +
+                                                    listdata[index]
+                                                        ["booking_date"],
+                                                style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontStyle: FontStyle.normal,
+                                                  fontWeight: FontWeight.w500,
+                                                )),
+                                            Text(
+                                                "Status Pesanan: " +
+                                                    listdata[index]
+                                                        ["status_bayar"],
+                                                style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontStyle: FontStyle.normal,
+                                                  fontWeight: FontWeight.w500,
+                                                )),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                     Expanded(
-                                      flex: 3,
-                                      child: RaisedButton(
-                                        onPressed: () {},
-                                        textColor: Colors.white,
-                                        color: Color(0xFF44D8F3),
-                                        child: Container(
-                                          child: Text(
-                                              listdata[index]["status_bayar"]),
+                                      flex: 4,
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                        child: RaisedButton(
+                                          onPressed: () {},
+                                          textColor: Colors.white,
+                                          color: Color(0xFF44D8F3),
+                                          child: Container(
+                                            child: Text(listdata[index]
+                                                ["status_bayar"]),
+                                          ),
                                         ),
                                       ),
                                     ),

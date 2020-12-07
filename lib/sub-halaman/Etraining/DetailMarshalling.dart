@@ -74,8 +74,11 @@ class _DetailEtrainingState extends State<DetailEtraining>
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Bayar(widget.data,
-                            widget.imageurl + widget.foto[0], widget.judul)));
+                        builder: (context) => Bayar(
+                            widget.data,
+                            widget.imageurl + widget.foto[0],
+                            widget.judul,
+                            tombol)));
               },
               child: Container(
                   height: 50,

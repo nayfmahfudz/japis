@@ -7,8 +7,8 @@ import 'package:japis_new/DETAIL/detail/pembayaran/berks.dart';
 import 'package:japis_new/model/usermodel.dart';
 
 class Bayar extends StatefulWidget {
-  Bayar(this.data, this.imageurl, this.judul);
-  String judul;
+  Bayar(this.data, this.imageurl, this.judul, this.tombol);
+  String judul, tombol;
   Map data;
   String imageurl;
 
@@ -49,6 +49,9 @@ class _BayarState extends State<Bayar> {
   @override
   final _formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
+    if (widget.judul == "training") {
+      widget.tombol = "Lengkapi Berkas";
+    }
     alarm(BuildContext context, String text) => showDialog(
         context: context,
         builder: (context) => Center(
@@ -86,27 +89,32 @@ class _BayarState extends State<Bayar> {
               ),
               textColor: Colors.white,
               color: Color(0xFF44D8F3),
-              child: Text('Lengapi Berkas'),
+              child: Text(widget.tombol),
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            Berkas(widget.judul, widget.data)));
-                // if (_formKey.currentState.validate()) {
-                // post(widget.data["id_layanan"], widget.data["tarif"])
-                //     .then((value) {
-                //   // Map value;
-                //   // print(value["status"]);
-                //   if (value["status"] == true) {
-                //     Navigator.pop(context);
-                //     Navigator.pop(context);
-                //     alarm(context, value["message"].toString());
-                //   } else {
-                //     alarm(context, value["message"].toString());
-                //   }
-                // });
-                // }
+                if (widget.judul == "training") {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Berkas(widget.judul, widget.data)));
+                } else {
+                  // if (_formKey.currentState.validate()) {
+                  post(widget.data["id_layanan"], widget.data["tarif"])
+                      .then((value) {
+                    // Map value;
+                    // print(value["status"]);
+                    if (value["status"] == true) {
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                      alarm(context, value["message"].toString());
+                    } else {
+                      alarm(context, value["message"].toString());
+                    }
+                  });
+                  // }
+                }
+
+                //
               },
             )),
         appBar: AppBar(

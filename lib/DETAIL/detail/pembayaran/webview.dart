@@ -73,23 +73,10 @@ class _WebViewBayarState extends State<WebViewBayar> {
             ],
           ),
         ),
-        body: Column(
-          children: [
-            Builder(
-                builder: (contex) => WebView(
-                      initialUrl:
-                          'http://ptb.namaindah.com/qrcode/${widget.data["no_invoice"]}',
-                    )),
-            Container(
-              height: 100,
-              width: MediaQuery.of(context).size.width,
-              child: Card(
-                child: Column(
-                  children: [Text(widget.databank["waktu"])],
-                ),
-              ),
-            )
-          ],
-        ));
+        body: Builder(
+            builder: (contex) => WebView(
+                  initialUrl:
+                      'http://ptb.namaindah.com/qrcode/${widget.data["no_invoice"]}',
+                )));
   }
 }
