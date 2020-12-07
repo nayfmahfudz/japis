@@ -73,11 +73,17 @@ class Pesanan extends StatelessWidget {
                             ),
                             child: InkWell(
                                 onTap: () {
-                                  Navigator.push(
+                                  if(listdata[index]
+                                                ["status_bayar"]=="lunas"){
+
+                                                }else{
+ Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
                                               TotalBayar(listdata[index])));
+                                                }
+                                 
                                 },
                                 child: Row(
                                   mainAxisAlignment:

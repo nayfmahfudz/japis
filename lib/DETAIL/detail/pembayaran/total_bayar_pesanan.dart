@@ -68,8 +68,8 @@ class _TotalBayarState extends State<TotalBayar> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => WebViewBayar(
-                            widget.data, listbank[indexbutton - 1])));
+                        builder: (context) => BayarPesanan(
+                            listbank[indexbutton - 1], widget.data)));
               },
               child: Container(
                   height: 50,

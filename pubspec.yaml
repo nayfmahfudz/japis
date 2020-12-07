@@ -30,6 +30,7 @@ dependencies:
   shared_preferences: ^0.5.12+4
   # clipboard_manager: ^0.0.4
   webview_flutter: ^1.0.7
+  dio: ^3.0.10
   flutter:
     sdk: flutter
 
