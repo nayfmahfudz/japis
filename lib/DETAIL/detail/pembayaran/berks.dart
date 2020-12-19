@@ -68,6 +68,16 @@ class _BerkasState extends State<Berkas> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    dummy = null;
+    bukti = null;
+    uangmuka = null;
+    ijazah = null;
+    keterangan = null;
+  }
+
+  @override
   Widget build(BuildContext context) {
     alarm(BuildContext context, String text) => showDialog(
         context: context,

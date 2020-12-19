@@ -28,7 +28,7 @@ class MenuMarketplace extends StatelessWidget {
           padding: EdgeInsets.only(
               left: 30, right: 30, top: MediaQuery.of(context).size.height / 4),
           child: Container(
-            height: MediaQuery.of(context).size.height * 0.4,
+            height: MediaQuery.of(context).size.height * 0.45,
             width: MediaQuery.of(context).size.width,
             child: Card(
               child: Column(

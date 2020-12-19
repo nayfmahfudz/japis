@@ -1,26 +1,6 @@
-//import 'package:flutter/material.dart';
-
 User user;
 
 class User {
-  // "id_member": "1",
-//     "username": "admin@intikali.org",
-//     "email": "admin@intikali.org",
-//     "password": "$2y$10$WaPR1QC7TCqW.MM0SrJLJ.lTE1HfmEW0DL3qU7FTvyaoTNkFHnj8C",
-//     "role": "member",
-//     "nama": null,
-//     "tgl_lahir": null,
-//     "no_wa": "085846232177",
-//     "no_ktp": null,
-//     "no_kk": null,
-//     "alamat": null,
-//     "token": "cOTsdkN4x3KRMVAithgw",
-//     "avatar": null,
-//     "kode_verif_email": "5126",
-//     "verif_email_date": null,
-//     "verif_berkas_date": null,
-//     "reg_date": "2020-10-19 11:55:56",
-//     "update_date": "2020-10-19 11:55:56"
   User({
     this.token,
     this.id_member,
@@ -119,7 +99,7 @@ class User {
         "verif_berkas_date": verif_berkas_date,
         "reg_date": reg_date,
         "update_date": update_date,
-        "id": id_member,
+        "id_member": id_member,
         "token": token,
         "nama": nama,
         "username": username,

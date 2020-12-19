@@ -6,6 +6,7 @@ import 'package:japis_new/navigasi/awal/Awal.dart';
 import 'package:japis_new/navigasi/pesanan/Pesanan.dart';
 import 'package:japis_new/navigasi/inbox/Inbox.dart';
 import 'package:japis_new/navigasi/akun/Login.dart';
+import 'package:japis_new/splash.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() => runApp(MyApp());
@@ -14,15 +15,15 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   // static const String _title = 'Flutter Code Sample';
   // Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  // getPref() async {
-  //   SharedPreferences preferences = await SharedPreferences.getInstance();
+  getPref() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
 
-  //   String value = preferences.getString("value");
-  //   Map data = json.decode(value);
-  //   user = User.fromJson(data);
-  //   print(user);
-  //   return user;
-  // }
+    String value = preferences.getString("akun");
+    Map data = json.decode(value);
+    user = User.fromJson(data);
+    print(user);
+    return user;
+  }
   // Future datamember(idmember, token) async {
   //   final SharedPreferences prefs = await _prefs;
   //   final url = "http://ptb.namaindah.com/api/member/id/$idmember?token=$token";
@@ -43,23 +44,27 @@ class MyApp extends StatelessWidget {
               backgroundColor: Colors.white.withOpacity(0.5)),
         ),
         // title: _title,
-        home: MyStatefulWidget()
-        //  FutureBuilder(
-        //   future: getPref(),
-        //   builder: (context, snapshot) {
-        //     if (snapshot.data == null) {
-        //       return Akun();
-        //     } else {
-        //       if (snapshot.data.id_member != null &&
-        //           snapshot.data.token != null) {
-        //         return MyStatefulWidget();
-        //       } else {
-        //         return
-        // Akun()
-        //       }
-        //     }
-        //   },
-        // )
+        home: Splash()
+//          FutureBuilder(
+//           future: getPref(),
+//           builder: (context, snapshot) {
+//             Future sleep1() {
+//   return new Future.delayed(const Duration(seconds: 1), () => "1");
+// }
+
+//             if (snapshot.data == null) {
+//               return MyStatefulWidget();
+//             } else {
+//               if (snapshot.data.id_member != null &&
+//                   snapshot.data.token != null) {
+//                 return MyStatefulWidget();
+//               } else {
+//                 return
+//         MyStatefulWidget();
+//               }
+//             }
+//           },
+//         )
         );
   }
 }

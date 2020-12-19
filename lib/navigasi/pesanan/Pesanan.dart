@@ -9,6 +9,8 @@ import 'package:http/http.dart' as http;
 class Pesanan extends StatelessWidget {
   Future data() async {
     print(user.token);
+    print("dd");
+    print(user.id_member);
     final url = "http://ptb.namaindah.com/api/mybooking";
     final response = await http
         .post(url, body: {'id_member': user.id_member, 'token': user.token});
@@ -73,17 +75,15 @@ class Pesanan extends StatelessWidget {
                             ),
                             child: InkWell(
                                 onTap: () {
-                                  if(listdata[index]
-                                                ["status_bayar"]=="lunas"){
-
-                                                }else{
- Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              TotalBayar(listdata[index])));
-                                                }
-                                 
+                                  if (listdata[index]["status_bayar"] ==
+                                      "lunas") {
+                                  } else {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                TotalBayar(listdata[index])));
+                                  }
                                 },
                                 child: Row(
                                   mainAxisAlignment:
