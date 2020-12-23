@@ -66,6 +66,7 @@ class _UploadFotoState extends State<UploadFoto> {
     ;
     return response.data;
   }
+  // gg
   // Future post(id, total) async {
   //   final url = "http://ptb.namaindah.com/api/avatar";
   //   final response = await http
