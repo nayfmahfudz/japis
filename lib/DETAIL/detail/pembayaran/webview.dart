@@ -25,8 +25,9 @@ class _BayarPesananState extends State<BayarPesanan> {
       "id_booking": widget.data["id_booking"],
       "userfile": await MultipartFile.fromFile(file.path, filename: fileName),
     });
-    response =
-        await dio.post("http://ptb.namaindah.com/api/buktitf", data: formData);
+    response = await dio.post(
+        "http://japis.poltekbangjayapura.ac.id/api/buktitf",
+        data: formData);
     print(response);
     return response.data;
   }

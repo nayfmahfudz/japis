@@ -13,14 +13,14 @@ class UploadFoto extends StatefulWidget {
 }
 
 class _UploadFotoState extends State<UploadFoto> {
-//   POST: http://ptb.namaindah.com/api/avatar
+//   POST: http://japis.poltekbangjayapura.ac.id/api/avatar
 // form-data:
 
 // id_member (Text)
 // userfile (File)
 
 // example:
-// POST http://ptb.namaindah.com/api/avatar
+// POST http://japis.poltekbangjayapura.ac.id/api/avatar
 // id_member: 2
 // userfile: baju.jpg
 // response:
@@ -32,8 +32,8 @@ class _UploadFotoState extends State<UploadFoto> {
 // "upload_data": {
 // "file_name": "avatar_2_KL7PfGrzaX6BwevU23jA.jpg",
 // "file_type": "image/jpeg",
-// "file_path": "/home/admin/web/ptb.namaindah.com/public_html/assets/uploads/",
-// "full_path": "/home/admin/web/ptb.namaindah.com/public_html/assets/uploads/avatar_2_KL7PfGrzaX6BwevU23jA.jpg",
+// "file_path": "/home/admin/web/japis.poltekbangjayapura.ac.id/public_html/assets/uploads/",
+// "full_path": "/home/admin/web/japis.poltekbangjayapura.ac.id/public_html/assets/uploads/avatar_2_KL7PfGrzaX6BwevU23jA.jpg",
 // "raw_name": "avatar_2_KL7PfGrzaX6BwevU23jA",
 // "orig_name": "avatar_2_KL7PfGrzaX6BwevU23jA.jpg",
 // "client_name": "baju.jpg",
@@ -55,8 +55,11 @@ class _UploadFotoState extends State<UploadFoto> {
       "id_member": user.id_member,
       "userfile": await MultipartFile.fromFile(ijazah.path, filename: fileName),
     });
-    response =
-        await dio.post("http://ptb.namaindah.com/api/avatar", data: formData);
+    response = await dio.post(
+        "http://japis.poltekbangjayapura.ac.id/api/avatar",
+        data: formData);
+    print(response.data["data"]["upload_data"]["full_path"]);
+    user.image = response.data["full_path"];
     print(response);
     Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
     final SharedPreferences prefs = await _prefs;
@@ -68,7 +71,7 @@ class _UploadFotoState extends State<UploadFoto> {
   }
   // gg
   // Future post(id, total) async {
-  //   final url = "http://ptb.namaindah.com/api/avatar";
+  //   final url = "http://japis.poltekbangjayapura.ac.id/api/avatar";
   //   final response = await http
   //       .post(url, body: {"id_member": user.id_member, "userfile": ijazah});
 
@@ -265,8 +268,8 @@ class _UploadFotoState extends State<UploadFoto> {
 // "upload_data": {
 // "file_name": "avatar_2_KL7PfGrzaX6BwevU23jA.jpg",
 // "file_type": "image/jpeg",
-// "file_path": "/home/admin/web/ptb.namaindah.com/public_html/assets/uploads/",
-// "full_path": "/home/admin/web/ptb.namaindah.com/public_html/assets/uploads/avatar_2_KL7PfGrzaX6BwevU23jA.jpg",
+// "file_path": "/home/admin/web/japis.poltekbangjayapura.ac.id/public_html/assets/uploads/",
+// "full_path": "/home/admin/web/japis.poltekbangjayapura.ac.id/public_html/assets/uploads/avatar_2_KL7PfGrzaX6BwevU23jA.jpg",
 // "raw_name": "avatar_2_KL7PfGrzaX6BwevU23jA",
 // "orig_name": "avatar_2_KL7PfGrzaX6BwevU23jA.jpg",
 // "client_name": "baju.jpg",

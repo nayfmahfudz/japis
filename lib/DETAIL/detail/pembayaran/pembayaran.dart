@@ -20,11 +20,7 @@ class Bayar extends StatefulWidget {
 
 int index = 1;
 Future post(id, total) async {
-  // print(user.id_member);
-  // print(user.token);
-  // print(id);
-  // print(total);
-  final url = "http://ptb.namaindah.com/api/booking";
+  final url = "http://japis.poltekbangjayapura.ac.id/api/booking";
   final response = await http.post(url, body: {
     "id_member": user.id_member,
     "token": user.token,
@@ -66,6 +62,8 @@ class _BayarState extends State<Bayar> {
     } else {
       text1 = "";
       text2 = "";
+      text4 = "";
+      text3 = "";
     }
   }
 
@@ -85,7 +83,10 @@ class _BayarState extends State<Bayar> {
   bool yakin = false;
   final _formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
-    // index = 1;
+    print(user.id_member);
+    print(user.token);
+    // print(id);
+    // print(total);
     if (widget.judul == "training") {
       widget.tombol = "Lengkapi Berkas";
     }
@@ -577,241 +578,306 @@ class _BayarState extends State<Bayar> {
                             ),
                           ),
                         ),
-                  Container(
-                      child: Card(
-                          child: ListView(
-                              physics: ScrollPhysics(),
-                              padding: EdgeInsets.all(20),
-                              shrinkWrap: true,
-                              children: <Widget>[
-                        //
-                        user != null
-                            ? Container()
-                            : Container(
-                                padding: EdgeInsets.fromLTRB(10, 0, 10, 15),
-                                child: Text(
-                                  "Silahkan Isi Untuk Melanjutkan Pesanan",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500),
-                                )),
-                        user != null
-                            ? Container()
-                            : Container(
-                                padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                child: Text(
-                                  "Nama",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500),
-                                )),
-                        user != null
-                            ? Container()
-                            : Container(
-                                padding: EdgeInsets.fromLTRB(10, 6, 10, 0),
-                                child: TextFormField(
-                                  validator: (value) {
-                                    if (value.isEmpty) {
-                                      return 'Alamat email tidak boleh kosong';
-                                    }
-                                    return null;
-                                  },
-                                  // controller: nameController,
-                                  decoration: InputDecoration(
-                                    border: new OutlineInputBorder(
-                                      borderRadius:
-                                          new BorderRadius.circular(10.0),
-                                      borderSide: new BorderSide(),
+                  user == null ||
+                          widget.judul != "commerce" &&
+                              widget.judul != "healthcare"
+                      ? Container()
+                      : Container(
+                          child: Card(
+                              child: ListView(
+                                  physics: ScrollPhysics(),
+                                  padding: EdgeInsets.all(20),
+                                  shrinkWrap: true,
+                                  children: <Widget>[
+                              //
+                              // / ||
+                              //         widget.judul == "commerce" ||
+                              //         widget.judul == "healthcare"
+                              // ?
+                              Container(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 10, 15),
+                                  child: Text(
+                                    "Silahkan Isi Untuk Melanjutkan Pesanan",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
+                                  )),
+                              user != null
+                                  ? Container()
+                                  : Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                      child: Text(
+                                        "Nama",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500),
+                                      )),
+                              user != null
+                                  ? Container()
+                                  : Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(10, 6, 10, 0),
+                                      child: TextFormField(
+                                        validator: (value) {
+                                          if (value.isEmpty) {
+                                            return 'Alamat email tidak boleh kosong';
+                                          }
+                                          return null;
+                                        },
+                                        // controller: nameController,
+                                        decoration: InputDecoration(
+                                          border: new OutlineInputBorder(
+                                            borderRadius:
+                                                new BorderRadius.circular(10.0),
+                                            borderSide: new BorderSide(),
+                                          ),
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          hintText: 'Nama',
+                                        ),
+                                      ),
                                     ),
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    hintText: 'Nama',
-                                  ),
-                                ),
-                              ),
-                        user != null
-                            ? Container()
-                            : Container(
-                                padding: EdgeInsets.fromLTRB(10, 15, 10, 0),
-                                child: Text(
-                                  "Email",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500),
-                                )),
-                        user != null
-                            ? Container()
-                            : Container(
-                                padding: EdgeInsets.fromLTRB(10, 6, 10, 0),
-                                child: TextFormField(
-                                  validator: (value) {
-                                    if (value.isEmpty) {
-                                      return 'Email tidak boleh kosong';
-                                    }
-                                    return null;
-                                  },
-                                  // controller: passwordController,
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    border: new OutlineInputBorder(
-                                      borderRadius:
-                                          new BorderRadius.circular(10.0),
-                                      borderSide: new BorderSide(),
+                              user != null
+                                  ? Container()
+                                  : Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(10, 15, 10, 0),
+                                      child: Text(
+                                        "Email",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500),
+                                      )),
+                              user != null
+                                  ? Container()
+                                  : Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(10, 6, 10, 0),
+                                      child: TextFormField(
+                                        validator: (value) {
+                                          if (value.isEmpty) {
+                                            return 'Email tidak boleh kosong';
+                                          }
+                                          return null;
+                                        },
+                                        // controller: passwordController,
+                                        decoration: InputDecoration(
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          border: new OutlineInputBorder(
+                                            borderRadius:
+                                                new BorderRadius.circular(10.0),
+                                            borderSide: new BorderSide(),
+                                          ),
+                                          hintText: 'Email',
+                                        ),
+                                      ),
                                     ),
-                                    hintText: 'Email',
-                                  ),
-                                ),
-                              ),
-                        user != null
-                            ? Container()
-                            : Container(
-                                padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                child: Text(
-                                  "Alamat",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500),
-                                )),
-                        user != null
-                            ? Container()
-                            : Container(
-                                padding: EdgeInsets.fromLTRB(10, 6, 10, 0),
-                                child: TextFormField(
-                                  validator: (value) {
-                                    if (value.isEmpty) {
-                                      return 'Alamat  tidak boleh kosong';
-                                    }
-                                    return null;
-                                  },
-                                  // controller: nameController,
-                                  decoration: InputDecoration(
-                                    border: new OutlineInputBorder(
-                                      borderRadius:
-                                          new BorderRadius.circular(10.0),
-                                      borderSide: new BorderSide(),
+                              user != null
+                                  ? Container()
+                                  : Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                      child: Text(
+                                        "Alamat",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500),
+                                      )),
+                              user != null
+                                  ? Container()
+                                  : Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(10, 6, 10, 0),
+                                      child: TextFormField(
+                                        validator: (value) {
+                                          if (value.isEmpty) {
+                                            return 'Alamat  tidak boleh kosong';
+                                          }
+                                          return null;
+                                        },
+                                        // controller: nameController,
+                                        decoration: InputDecoration(
+                                          border: new OutlineInputBorder(
+                                            borderRadius:
+                                                new BorderRadius.circular(10.0),
+                                            borderSide: new BorderSide(),
+                                          ),
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          hintText: 'Alamat',
+                                        ),
+                                      ),
                                     ),
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    hintText: 'Alamat',
-                                  ),
-                                ),
-                              ),
-                        user != null
-                            ? Container()
-                            : Container(
-                                padding: EdgeInsets.fromLTRB(10, 15, 10, 0),
-                                child: Text(
-                                  "Nomor Telepon",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500),
-                                )),
-                        user != null
-                            ? Container()
-                            : Container(
-                                padding: EdgeInsets.fromLTRB(10, 6, 10, 0),
-                                child: TextFormField(
-                                  validator: (value) {
-                                    if (value.isEmpty) {
-                                      return 'Nomor Telepon tidak boleh kosong';
-                                    }
-                                    return null;
-                                  },
-                                  // controller: passwordController,
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    border: new OutlineInputBorder(
-                                      borderRadius:
-                                          new BorderRadius.circular(10.0),
-                                      borderSide: new BorderSide(),
+                              user != null
+                                  ? Container()
+                                  : Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(10, 15, 10, 0),
+                                      child: Text(
+                                        "Nomor Telepon",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500),
+                                      )),
+                              user != null
+                                  ? Container()
+                                  : Container(
+                                      padding:
+                                          EdgeInsets.fromLTRB(10, 6, 10, 0),
+                                      child: TextFormField(
+                                        validator: (value) {
+                                          if (value.isEmpty) {
+                                            return 'Nomor Telepon tidak boleh kosong';
+                                          }
+                                          return null;
+                                        },
+                                        // controller: passwordController,
+                                        decoration: InputDecoration(
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          border: new OutlineInputBorder(
+                                            borderRadius:
+                                                new BorderRadius.circular(10.0),
+                                            borderSide: new BorderSide(),
+                                          ),
+                                          hintText: 'Password',
+                                        ),
+                                      ),
                                     ),
-                                    hintText: 'Password',
-                                  ),
-                                ),
-                              ),
 
-                        Padding(
-                          padding: EdgeInsets.only(left: 20, right: 20),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                height: 50,
-                                width: 120,
-                                child: RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
-                                  onPressed: () {
-                                    setState(() {
-                                      tombol = 1;
-                                    });
-                                  },
-                                  child: Text(
-                                    text1,
-                                    style: TextStyle(
-                                        color: tombol == 1
-                                            ? Colors.white
-                                            : Colors.black,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  color: tombol == 1
-                                      ? Color(0xFF44D8F3)
-                                      : Colors.grey,
-                                ),
-                              ),
-                              Container(
-                                height: 50,
-                                width: 120,
-                                child: RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
-                                  onPressed: () {
-                                    setState(() {
-                                      tombol = 2;
-                                    });
-                                  },
-                                  child: Text(
-                                    text2,
-                                    style: TextStyle(
-                                        color: tombol == 2
-                                            ? Colors.white
-                                            : Color(0xFF44D8F3),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  color: tombol == 2
-                                      ? Color(0xFF44D8F3)
-                                      : Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        tombol == 2 && widget.judul == "commerce"
-                            ? Padding(
-                                padding: const EdgeInsets.all(12),
-                                child: Column(
+                              Padding(
+                                padding: EdgeInsets.only(left: 20, right: 20),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 110),
-                                          child: Text(
-                                            text5,
+                                    Container(
+                                      height: 50,
+                                      width: 120,
+                                      child: RaisedButton(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        onPressed: () {
+                                          setState(() {
+                                            tombol = 1;
+                                          });
+                                        },
+                                        child: Text(
+                                          text1,
+                                          style: TextStyle(
+                                              color: tombol == 1
+                                                  ? Colors.white
+                                                  : Colors.black,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        color: tombol == 1
+                                            ? Color(0xFF44D8F3)
+                                            : Colors.grey,
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 50,
+                                      width: 120,
+                                      child: RaisedButton(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        onPressed: () {
+                                          setState(() {
+                                            tombol = 2;
+                                          });
+                                        },
+                                        child: Text(
+                                          text2,
+                                          style: TextStyle(
+                                              color: tombol == 2
+                                                  ? Colors.white
+                                                  : Color(0xFF44D8F3),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        color: tombol == 2
+                                            ? Color(0xFF44D8F3)
+                                            : Colors.grey,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              tombol == 2 && widget.judul == "commerce"
+                                  ? Padding(
+                                      padding: const EdgeInsets.all(12),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 110),
+                                                child: Text(
+                                                  text5,
+                                                  style: TextStyle(
+                                                      fontSize: widget.judul ==
+                                                              "commerce"
+                                                          ? 14
+                                                          : 30,
+                                                      fontStyle:
+                                                          FontStyle.normal,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Colors.black),
+                                                ),
+                                              ),
+                                              InkWell(
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                Alamat(
+                                                                    widget
+                                                                        .judul,
+                                                                    widget
+                                                                        .data)));
+                                                  },
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 15),
+                                                    child: Row(
+                                                      children: [
+                                                        Icon(
+                                                          Icons.edit,
+                                                          color:
+                                                              Color(0xFF44D8F3),
+                                                        ),
+                                                        Text(
+                                                          "Pilih Alamat lain",
+                                                          style: TextStyle(
+                                                              color: Color(
+                                                                  0xFF44D8F3)),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ))
+                                            ],
+                                          ),
+                                          Text(
+                                            text6,
                                             style: TextStyle(
                                                 fontSize:
                                                     widget.judul == "commerce"
@@ -821,109 +887,69 @@ class _BayarState extends State<Bayar> {
                                                 fontWeight: FontWeight.w500,
                                                 color: Colors.black),
                                           ),
-                                        ),
-                                        InkWell(
-                                            onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          Alamat(widget.judul,
-                                                              widget.data)));
-                                            },
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 15),
-                                              child: Row(
-                                                children: [
-                                                  Icon(
-                                                    Icons.edit,
-                                                    color: Color(0xFF44D8F3),
-                                                  ),
-                                                  Text(
-                                                    "Pilih Alamat lain",
-                                                    style: TextStyle(
-                                                        color:
-                                                            Color(0xFF44D8F3)),
-                                                  )
-                                                ],
+                                        ],
+                                      ),
+                                    )
+                                  : tombol == 1
+                                      ? Padding(
+                                          padding: const EdgeInsets.all(12),
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                text3,
+                                                style: TextStyle(
+                                                    fontSize: widget.judul ==
+                                                            "commerce"
+                                                        ? 14
+                                                        : 30,
+                                                    fontStyle: FontStyle.normal,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: Colors.black),
                                               ),
-                                            ))
-                                      ],
-                                    ),
-                                    Text(
-                                      text6,
-                                      style: TextStyle(
-                                          fontSize: widget.judul == "commerce"
-                                              ? 14
-                                              : 30,
-                                          fontStyle: FontStyle.normal,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.black),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            : tombol == 1
-                                ? Padding(
-                                    padding: const EdgeInsets.all(12),
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          text3,
-                                          style: TextStyle(
-                                              fontSize:
-                                                  widget.judul == "commerce"
-                                                      ? 14
-                                                      : 30,
-                                              fontStyle: FontStyle.normal,
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.black),
+                                              Text(
+                                                text4,
+                                                style: TextStyle(
+                                                    fontSize: widget.judul ==
+                                                            "commerce"
+                                                        ? 14
+                                                        : 30,
+                                                    fontStyle: FontStyle.normal,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: Colors.black),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      : Padding(
+                                          padding: const EdgeInsets.all(12),
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                text5,
+                                                style: TextStyle(
+                                                    fontSize: widget.judul ==
+                                                            "commerce"
+                                                        ? 14
+                                                        : 30,
+                                                    fontStyle: FontStyle.normal,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: Colors.black),
+                                              ),
+                                              Text(
+                                                text6,
+                                                style: TextStyle(
+                                                    fontSize: widget.judul ==
+                                                            "commerce"
+                                                        ? 14
+                                                        : 30,
+                                                    fontStyle: FontStyle.normal,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: Colors.black),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                        Text(
-                                          text4,
-                                          style: TextStyle(
-                                              fontSize:
-                                                  widget.judul == "commerce"
-                                                      ? 14
-                                                      : 30,
-                                              fontStyle: FontStyle.normal,
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.black),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                : Padding(
-                                    padding: const EdgeInsets.all(12),
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          text5,
-                                          style: TextStyle(
-                                              fontSize:
-                                                  widget.judul == "commerce"
-                                                      ? 14
-                                                      : 30,
-                                              fontStyle: FontStyle.normal,
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.black),
-                                        ),
-                                        Text(
-                                          text6,
-                                          style: TextStyle(
-                                              fontSize:
-                                                  widget.judul == "commerce"
-                                                      ? 14
-                                                      : 30,
-                                              fontStyle: FontStyle.normal,
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.black),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                      ]))),
+                            ]))),
                   InkWell(
                     onTap: () {
                       setState(() {

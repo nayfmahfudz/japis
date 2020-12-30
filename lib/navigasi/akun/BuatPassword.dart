@@ -44,7 +44,7 @@ class _State extends State<BuatPassword> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   Future pass() async {
-    final url = "http://ptb.namaindah.com/api/setpass";
+    final url = "http://japis.poltekbangjayapura.ac.id/api/setpass";
     print(nameController.text);
     print(passwordController.text);
     final response = await http.post(url, body: {

@@ -23,7 +23,7 @@ Future post(id, total) async {
   print(user.token);
   print(id);
   print(total);
-  final url = "http://ptb.namaindah.com/api/booking";
+  final url = "http://japis.poltekbangjayapura.ac.id/api/booking";
   final response = await http.post(url, body: {
     "id_member": user.id_member,
     "token": user.token,
@@ -37,7 +37,7 @@ Future post(id, total) async {
   return jsondata;
 }
 
-// POST http://ptb.namaindah.com/api/booking
+// POST http://japis.poltekbangjayapura.ac.id/api/booking
 
 // ## form-data:
 // id_member

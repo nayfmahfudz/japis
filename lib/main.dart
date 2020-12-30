@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   }
   // Future datamember(idmember, token) async {
   //   final SharedPreferences prefs = await _prefs;
-  //   final url = "http://ptb.namaindah.com/api/member/id/$idmember?token=$token";
+  //   final url = "http://japis.poltekbangjayapura.ac.id/api/member/id/$idmember?token=$token";
   //   final response = await http.get(url);
   //   final jsondata = jsonDecode(response.body);
   //   String data;

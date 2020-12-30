@@ -15,7 +15,8 @@ class EHealthcare extends StatelessWidget {
   String imageurl;
   Future _future;
   Future semua() async {
-    final url = "http://ptb.namaindah.com/api/layanan/e/healthcare";
+    final url =
+        "http://japis.poltekbangjayapura.ac.id/api/layanan/e/healthcare";
     final response = await http.get(url);
     final jsondata = jsonDecode(response.body);
     print(jsondata);
@@ -24,21 +25,21 @@ class EHealthcare extends StatelessWidget {
   }
 
   Future asrama() async {
-    final url = "http://ptb.namaindah.com/api/layanan/e/";
+    final url = "http://japis.poltekbangjayapura.ac.id/api/layanan/e/";
     final response = await http.get(url);
     final jsondata = jsonDecode(response.body);
     return jsondata;
   }
 
   Future pertemuan() async {
-    final url = "http://ptb.namaindah.com/api/layanan/e/";
+    final url = "http://japis.poltekbangjayapura.ac.id/api/layanan/e/";
     final response = await http.get(url);
     final jsondata = jsonDecode(response.body);
     return jsondata;
   }
 
   Future olahraga() async {
-    final url = "http://ptb.namaindah.com/api/layanan/e/";
+    final url = "http://japis.poltekbangjayapura.ac.id/api/layanan/e/";
     final response = await http.get(url);
     final jsondata = jsonDecode(response.body);
     return jsondata;
@@ -153,6 +154,14 @@ class EHealthcare extends StatelessWidget {
                 child: FutureBuilder(
                     future: semua(),
                     builder: (context, snapshot) {
+                      if (snapshot.data == null) {
+                        return Center(
+                          child: Container(
+                              height: 50,
+                              width: 50,
+                              child: CircularProgressIndicator()),
+                        );
+                      }
                       List listdata = snapshot.data["data"];
                       return Container(
                         width: MediaQuery.of(context).size.width,

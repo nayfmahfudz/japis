@@ -21,7 +21,8 @@ class _State extends State<Akun> {
     print(idmember);
     print(token);
 
-    final url = "http://ptb.namaindah.com/api/member/id/$idmember?token=$token";
+    final url =
+        "http://japis.poltekbangjayapura.ac.id/api/member/id/$idmember?token=$token";
     print(url);
     final response = await http.get(url);
 
@@ -39,7 +40,7 @@ class _State extends State<Akun> {
   }
 
   Future login() async {
-    final url = "http://ptb.namaindah.com/api/login";
+    final url = "http://japis.poltekbangjayapura.ac.id/api/login";
     final response = await http.post(url, body: {
       'email': nameController.text,
       'password': passwordController.text
