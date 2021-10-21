@@ -17,7 +17,7 @@ class Etraining extends StatelessWidget {
   String imageurl;
   Future _future;
   Future semua() async {
-    final url = "http://ptb.namaindah.com/api/layanan/e/training";
+    var url = Uri.http('http://ptb.namaindah.com', '/api/layanan/e/training');
     final response = await http.get(url);
     final jsondata = jsonDecode(response.body);
     print(jsondata);
@@ -26,21 +26,21 @@ class Etraining extends StatelessWidget {
   }
 
   Future asrama() async {
-    final url = "http://ptb.namaindah.com/api/layanan/e/";
+    var url = Uri.http('http://ptb.namaindah.com', '/api/layanan/e/training');
     final response = await http.get(url);
     final jsondata = jsonDecode(response.body);
     return jsondata;
   }
 
   Future pertemuan() async {
-    final url = "http://ptb.namaindah.com/api/layanan/e/";
+    var url = Uri.http('http://ptb.namaindah.com', '/api/layanan/e/');
     final response = await http.get(url);
     final jsondata = jsonDecode(response.body);
     return jsondata;
   }
 
   Future olahraga() async {
-    final url = "http://ptb.namaindah.com/api/layanan/e/";
+    var url = Uri.http('http://ptb.namaindah.com', '/api/layanan/e/');
     final response = await http.get(url);
     final jsondata = jsonDecode(response.body);
     return jsondata;

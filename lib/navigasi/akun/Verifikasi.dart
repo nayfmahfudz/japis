@@ -17,7 +17,7 @@ class _State extends State<VerifikasiPendaftaran> {
   Future pass() async {
     print(nameController.text);
     print(widget.email);
-    final url = "http://ptb.namaindah.com/api/verif";
+    var url = Uri.http('http://ptb.namaindah.com', '/api/verif');
     final response = await http.post(url,
         body: {'email': widget.email, "kode_verif_email": nameController.text});
     print(response.body);

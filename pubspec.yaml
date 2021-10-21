@@ -21,17 +21,17 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  http: ^0.12.2
+  http: ^0.13.4
   flutter_open_whatsapp: ^0.1.2
-  url_launcher: ^5.7.10
-  flutter_html: ^1.1.1
-  intl: ^0.16.1
-  image_picker: ^0.6.7+14
-  shared_preferences: ^0.5.12+4
+  url_launcher: ^6.0.12
+  flutter_html: ^2.1.5
+  intl: ^0.17.0
+  image_picker: ^0.8.4+3
+  shared_preferences: ^2.0.8
   # clipboard_manager: ^0.0.4
-  webview_flutter: ^1.0.7
-  dio: ^3.0.10
-  date_time_picker: "^1.1.0"
+  webview_flutter: ^2.1.1
+  dio: ^4.0.0
+  date_time_picker: ^2.1.0
   flutter:
     sdk: flutter
 

@@ -23,7 +23,7 @@ Future post(id, total) async {
   print(user.token);
   print(id);
   print(total);
-  final url = "http://ptb.namaindah.com/api/booking";
+  var url = Uri.http('http://ptb.namaindah.com', '/api/booking');
   final response = await http.post(url, body: {
     "id_member": user.id_member,
     "token": user.token,

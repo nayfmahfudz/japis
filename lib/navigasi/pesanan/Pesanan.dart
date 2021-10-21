@@ -11,7 +11,7 @@ class Pesanan extends StatelessWidget {
     print(user.token);
     print("dd");
     print(user.id_member);
-    final url = "http://ptb.namaindah.com/api/mybooking";
+    var url = Uri.http('http://ptb.namaindah.com', '/api/mybooking');
     final response = await http
         .post(url, body: {'id_member': user.id_member, 'token': user.token});
     print(user.token);

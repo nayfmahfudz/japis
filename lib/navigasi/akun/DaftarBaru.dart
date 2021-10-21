@@ -14,7 +14,7 @@ class _State extends State<DaftarBaru> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   Future signup() async {
-    final url = "http://ptb.namaindah.com/api/signup";
+    var url = Uri.http('http://ptb.namaindah.com', '/api/signup');
     print(nameController.text);
     print(passwordController.text);
     final response = await http.post(url,
